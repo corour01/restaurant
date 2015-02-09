@@ -1,0 +1,12 @@
+<h2>Editing <%= @food.name %></h2>
+
+<form action="/foods/<%= @food.id %>" method="POST">
+  <%= erb :"/foods/_form" %> 
+  <input type="hidden" name="_method" value="patch">
+  <input type="submit">
+</form>
+
+<form action="/foods/<%= @food.id %>" method="POST">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Remove Item">
+</form>

@@ -1,0 +1,11 @@
+  <label for="name">Name</label>
+  <input id="name" type="text" name='food[name]' <% if @food %><value="<%= @food.name %>"><% end %><br>
+  
+  <label for="cuisine">Cuisine</label>
+  <input id="cuisine" type="text" name='food[cuisine]'<% if @food %> value="<%= @food.cuisine %>"><% end %><br>
+  
+  <label for="price">Price</label>
+  <input id="price" type="integer" name='food[price]'<% if @food %> value="<%= @food.price %>"><% end %><br>
+  
+  <label for="allergens">Allergens</label>
+  <input id="allergens" type="text" name='food[allergens]'<% if @food %> value="<%= @food.allergens %>"><% end %><br>

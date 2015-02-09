@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>EasyWaiter</title>
+    <link rel="stylesheet" href="/css/layout.css">
+  </head>
+  <body>
+    <header>
+      <%= erb :"/static/navigation" %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <%= erb :"/static/copyright" %>
+    </footer>
+  </body>
+</html>

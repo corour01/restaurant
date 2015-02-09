@@ -1,0 +1,8 @@
+<h2>Editing Party <%= @party.id %>, at table <%= @party.table_number%></h2>
+
+<form action="/party/<%= @party.id %>" method="POST">
+  <%= erb :"/parties/_form" %>
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="submit">
+
+</form>

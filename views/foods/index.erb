@@ -1,0 +1,8 @@
+<h2>Menu Items</h2>
+	<ul>
+  	<% @foods.each do |food| %>
+    	<li><a href="/foods/<%= food.id %>"><%=food.name%></a></li>
+  	<% end %>
+	</ul>
+	<a href="/foods/new">Add a new item to the menu</a><br>
+	<a href="/">Back to Main Menu</a><br>

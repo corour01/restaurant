@@ -1,0 +1,25 @@
+<h2>Party #<%= @party.id %></h2>
+
+<% if @party.paid == false %>
+	<p>This party is currently seated at Table <%= @party.table_number %><br>
+	<p>This party has <%= @party.guests %> guests</p></br>
+	<form action="/parties/<%= @party.id%>" method= "POST">
+	  <input type="submit" value="Checkout Party">
+	  <input type="hidden" name="_method" value="PATCH">
+	  <input type="hidden" name="party[paid]" value="1">
+	</form> 
+	
+	<form action="/parties/<%= @party.id %>" method="POST">
+  	<input type="hidden" name="_method" value="DELETE">
+  	<input type="submit" value="Delete Party">
+	</form>
+
+<% end %>
+	
+<% if @party.paid == true %>
+	<p> This party was seated at table <% @party.table_number %></p><br>
+	<p>This party had <% @party.guests %> guests </p>
+<% end %>
+	
+<a href="/parties/<%= @party.id %>/edit">To Edit, Delete, or Checkout</a></br>
+<a href="/parties">Back to list of Parties</a>
