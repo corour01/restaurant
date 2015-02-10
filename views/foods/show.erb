@@ -1,7 +1,9 @@
 <h2><%= @food.name %></h2>
-<p>Price: <%= @food.price %></p>
+<p>Price: £<%= @food.price %></p>
 <p>Cusine Type: <%= @food.cuisine %></p>
 <p>Allergens: <%= @food.allergens %></p>
 
 <a href="/foods/<%= @food.id %>/edit">Edit or Delete Item</a></br>
 <a href="/foods">Back to Menu</a>
+
+<a href="/foods">Cancel</a>

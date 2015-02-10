@@ -6,6 +6,7 @@ gem 'sinatra-activerecord', require: 'sinatra/activerecord'
 
 # Sinatra
 gem 'sinatra', github: 'sinatra/sinatra'
+gem 'unicorn'
 gem 'sinatra-contrib', require: 'sinatra/contrib/all'
 
 # Style

@@ -6,7 +6,7 @@ Bundler.require :default
 
 # Then connect to the database
 set :database, {
-  adapter: "postgresql", database: "bandersnatch_db",
+  adapter: "postgresql", database: "restaurant",
   host: "localhost", port: 5432
 }
 

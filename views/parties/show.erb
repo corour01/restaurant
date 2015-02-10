@@ -1,25 +1,68 @@
 <h2>Party #<%= @party.id %></h2>
 
+<% bill = 0 %>
+<% @party.foods.each do |food| %>
+  <% bill += food.price %>
+<% end %>
+
 <% if @party.paid == false %>
-	<p>This party is currently seated at Table <%= @party.table_number %><br>
-	<p>This party has <%= @party.guests %> guests</p></br>
-	<form action="/parties/<%= @party.id%>" method= "POST">
-	  <input type="submit" value="Checkout Party">
-	  <input type="hidden" name="_method" value="PATCH">
-	  <input type="hidden" name="party[paid]" value="1">
-	</form> 
-	
-	<form action="/parties/<%= @party.id %>" method="POST">
-  	<input type="hidden" name="_method" value="DELETE">
-  	<input type="submit" value="Delete Party">
-	</form>
+	<p>This party is currently seated at Table <%= @party.table_number %>
+	<br>
+	<p>This party has <%= @party.guests %> guests</p>
+
+	<br>
+
+	<% if @party.foods.any? %>
+		<ul class="Orders">Order:<% @party.foods.each do |food| %><br>
+			<li class="Orders"><%=food.name %><br><%=food.price %><br></li>
+		<% end %>
+	</ul>
+	<% else %>
+		<p>This party is waiting to order</p>
+	<% end %>
+
+	<p class="Orders">Total: £<%= bill%></p>
+	<p class="Orders">Suggested 15% Gratuity: £<%= sprintf "%.2f", (bill * 0.15) %></p>
+	<p class="Orders">Suggested 20% Gratuity: £<%= sprintf "%.2f", (bill * 0.2) %></p>
+	<p class="Orders">Suggested 25% Gratuity: £<%= sprintf "%.2f", (bill * 0.25) %></p>
+	<a href="/parties/<%= @party.id %>/edit">Add an order</a>
+	<br>
 
 <% end %>
 	
 <% if @party.paid == true %>
-	<p> This party was seated at table <% @party.table_number %></p><br>
-	<p>This party had <% @party.guests %> guests </p>
+	<p> This party was seated at table <%= @party.table_number %></p>
+	<br>
+	<p>This party had <%= @party.guests %> guests </p>
+	<br>
+	<ul class="Orders">Order:<% @party.foods.each do |food| %>
+		<br>
+		<li class="Orders"><%=food.name %><br><%=food.price %>
+		<br></li>
+	<% end %>
+	</ul>
+	<p class="Orders">Final Bill: £<%= bill%></p>
 <% end %>
-	
-<a href="/parties/<%= @party.id %>/edit">To Edit, Delete, or Checkout</a></br>
+
+<br>
+<br>
+
+<% unless @party.paid ==true %>
+	<form action="/parties/<%= @party.id%>" method= "POST">
+	  <input type="submit" value="Checkout">
+	  <input type="hidden" name="_method" value="PATCH">
+	  <input type="hidden" name="party[paid]" value="1">
+	</form> 
+<% end %>
+
+
+<form action="/parties/<%= @party.id %>" method="POST">
+ 	<input type="hidden" name="_method" value="DELETE">
+ 	<input type="submit" value="Delete Party">
+</form>
+
 <a href="/parties">Back to list of Parties</a>
+
+<br>
+<br>
+

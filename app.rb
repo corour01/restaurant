@@ -3,8 +3,8 @@ Dir["models/*.rb"].each do |file|
 end
 
 
-# require 'bundler'
-# Bundler.require
+require 'bundler'
+Bundler.require
 
 ActiveRecord::Base.establish_connection(
   adapter: "postgresql",
@@ -21,6 +21,7 @@ class Restaurant < Sinatra::Base
   end
 
 	get '/' do
+
 		erb :'index'
 	end
 
@@ -38,7 +39,7 @@ class Restaurant < Sinatra::Base
   post '/foods' do 
     food = Food.create(params[:food])
 
-    redirect to 'foods/#{food.id}'
+    redirect to "foods/#{food.id}"
   end
 
   get '/foods/:id' do 
@@ -70,40 +71,55 @@ class Restaurant < Sinatra::Base
 ############# Parties Routes ################  
 	get '/parties' do 
     @parties = Party.all
-    # Pry.start(binding)
     erb :'parties/index'
   end
 
   post '/parties' do 
     party = Party.create(params[:party])
-    erb :'parties/new'
 
-    redirect to "parties/#{party.id}"
+    redirect to "/parties/#{party.id}"
   end
 
   get '/parties/new' do 
   	@available = Party.open_tables
+
     erb :'parties/new'
   end
 
   get '/parties/:id' do 
     party_id = params[:id]
-    @party = Party.find(party_id)
+    @party = Party.find(params[:id])
+    @foods = @party.foods
     erb :'parties/show'
   end
 
-  get '/parties/:id/edit' do
-  	@available = Party.open_tables
-    @party = Party.find(params[:id])
-		erb :'parties/edit'
-
-    redirect to "parties/#{party.id}"
+  get '/parties/:id/edit' do 
+    @party = Party.find(params[:id]) 
+    @foods = Food.all
+    erb :'parties/edit'
   end
 
   patch '/parties/:id' do
     party = Party.find(params[:id])
     party.update(params[:party])
 
+    redirect to "/parties/#{party.id}"
+  end
+
+  # get '/parties/:party_id/order' do
+  #   @party = Party.find(params[:party_id])
+  #   @order = Order.find()
+  #   erb :'parties/show'
+  # end
+
+  post '/parties/:party_id/order' do
+    party = Party.find(params[:party_id])
+
+    order = Order.create(params[:order])
+    order.party_id = params[:party_id]
+    order.food_id = params[:party][:food]
+    order.save!
+    
     redirect to "/parties/#{party.id}"
   end
 
@@ -114,6 +130,12 @@ class Restaurant < Sinatra::Base
     redirect to "/parties"
   end
 
+  get '/parties/:id/receipt'  do
+    @party = Party.find(params[:id])
+    @foods = @party.foods
+    erb :'parties/receipt'
+    redirect to "/parties/:party_id"
+  end
 
 ################### ORDERS ROUTES ####################
 
@@ -123,6 +145,7 @@ class Restaurant < Sinatra::Base
   end
 
   post '/orders' do 
+    Pry.start(binding)
     @order = Order.create(params[:order])
 
     redirect to 'orders/#{order.id}'

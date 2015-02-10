@@ -1,16 +1,13 @@
 <h2>All Parties</h2>
 <% current = @parties.where(paid: 'f') %>
 <% previous = @parties.where(paid: 't') %>
-<ul>List of current Patrons<br>
-  <%current.each do |party| %>
+<h3>List of current patrons</h3>
+  <ul><%current.each do |party| %>
     <li><a href="/parties/<%= party.id %>">Party #<%= party.id %></a></li>
   <% end %>
 </ul>
-<ul>List of previous Patrons<br>
-	<% previous.each do |party| %>
+<h3>List of previous Patrons</h3>
+	<ul><% previous.each do |party| %>
     <li><a href="/parties/<%= party.id %>">Party #<%= party.id %></a></li>
   <% end %>
 </ul>
-
-<a href="/parties/new">Add a Party</a><br>
-<a href="/">Back to Main Menu</a><br>

@@ -1,8 +1,14 @@
-<h2>Editing Party <%= @party.id %>, at table <%= @party.table_number%></h2>
 
-<form action="/party/<%= @party.id %>" method="POST">
-  <%= erb :"/parties/_form" %>
-  <input type="hidden" name="_method" value="PATCH">
-  <input type="submit">
+<h2>Ordering for Party <%= @party.id %>, at table <%= @party.table_number%></h2>
 
-</form>
+<h3>Add food:</h3>
+	<form action="/parties/<%= @party.id %>/order" method="POST">
+		<select name="party[food]">
+			<% @foods.each do |food| %>
+				<option id="party[food]" type="number" value="<%= food.id %>"><%= food.name %> </option>
+			<% end %>
+		</select>
+  	<input type="submit">
+	</form>
+
+<a href="/parties">Cancel</a>

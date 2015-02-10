@@ -1,0 +1,36 @@
+<h2>Receipt:</h2>
+
+<p>Table number <%= @party.table_number %></p>
+<% bill = 0 %>
+<% @party.orders.each do |order| %>
+  <% bill += order.food.price %>
+<% end %>
+
+  <% if @party.orders.any? %>
+    <p>Table <%= @party.table_number %> ordered:</p>
+    <% @party.orders.each do |order|  %>
+        <p><%= order.food.name %><p>
+    
+        <form action="/orders/<%= order.id %>" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete Order">
+        </form>
+
+
+    <% end %>
+  <% else %>
+    <p>Table <%= @party.table_number %> has not ordered yet</p> 
+  <% end %>
+
+
+<% if @party.paid %>
+  <p>Paid $<%= bill %></p>
+<% else %>  
+  <p>Owes $<%= bill %></p>
+<% end %><br>
+
+<p>Suggested 15% Gratuity: %<%= bill * 0.15 %></p><br>
+
+<p>Suggested 20% Gratuity: %<%= bill * 0.2 %></p><br>
+
+<p>Suggested 25% Gratuity: %<%= bill * 0.25 %></p><br>

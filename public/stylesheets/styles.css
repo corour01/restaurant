@@ -1,3 +1,247 @@
-body {
-	background-color: light-green;
+
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700);
+@import url(http://fonts.googleapis.com/css?family=Poiret+One);
+
+li {
+  color: white;
 }
+
+a {
+	font-family: "Open Sans"
+	font-size: 40px;
+	color: white;
+	text-decoration: none;
+}
+
+a:hover {
+  text-shadow: 0.1em 0.1em #ff0000;
+}
+
+label {
+  font-family: "Open Sans";
+  color: white;
+}
+
+h1 {
+	font-family: 'Open Sans', sans-serif;
+	text-align: center;
+	color: white;
+}
+
+h2 {
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+}
+
+h3 {
+  color: white;
+}
+
+br {
+	color: black;
+}
+
+nav {
+	text-align: center;
+  background: #f96e5b;
+  width: auto;
+  margin-bottom: 20px;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  display: block;
+  zoom: 1;
+}
+nav ul:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+nav ul li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+nav.align-right ul li {
+  float: right;
+}
+nav.align-center ul {
+  text-align: center;
+}
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 15px 25px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  position: relative;
+  -webkit-transition: color .25s;
+  -moz-transition: color .25s;
+  -ms-transition: color .25s;
+  -o-transition: color .25s;
+  transition: color .25s;
+}
+nav ul li a:hover {
+  color: #333333;
+}
+nav ul li a:hover:before {
+  width: 100%;
+}
+nav ul li a:after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: -3px;
+  top: 19px;
+  height: 6px;
+  width: 6px;
+  background: #ffffff;
+  opacity: .5;
+}
+nav ul li a:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0;
+  background: #333333;
+  -webkit-transition: width .25s;
+  -moz-transition: width .25s;
+  -ms-transition: width .25s;
+  -o-transition: width .25s;
+  transition: width .25s;
+}
+nav ul li.last > a:after,
+nav ul li:last-child > a:after {
+  display: none;
+}
+nav ul li.active a {
+  color: #333333;
+}
+nav ul li.active a:before {
+  width: 100%;
+}
+nav.align-right li.last > a:after,
+nav.align-right li:last-child > a:after {
+  display: block;
+}
+nav.align-right li:first-child a:after {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  nav ul li {
+    float: none;
+    display: block;
+  }
+  nav ul li a {
+    width: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-bottom: 1px solid #fb998c;
+  }
+  nav ul li.last > a,
+  nav ul li:last-child > a {
+    border: 0;
+  }
+  nav ul li a:after {
+    display: none;
+  }
+  nav ul li a:before {
+    display: none;
+  }
+  nav ul li a:hover {
+    text-shadow: none;
+  }
+}
+
+body {
+	margin-left: 100px;
+	margin-right: 100px;
+	background: url('/images/background.jpg') no-repeat;
+  background-attachment: fixed;
+	background-size: cover;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 24px;
+}
+
+ul {
+  color: white;
+	font-style: bold;
+	list-style-type: none;
+	padding: 10px, 10px, 10px, 10px;
+
+}
+
+li {
+	text-decoration: none;
+}
+
+li.Orders {
+  font-family: 'Poiret One'
+
+}
+
+input {
+ color: #ffffff ;
+ border: 3px solid #ffffff ;
+ padding: 10px;
+ font-size: 18px;
+ font-family: 'Open Sans', sans-serif;
+ background: transparent;
+}
+input[type="submit"] {
+ background: black;
+ font-family: 'Open Sans', sans-serif;
+ color: #ffffff ;
+}
+input[type="submit"]:hover {
+  cursor: hand;
+  font-family: 'Open Sans', sans-serif;
+  background: #4c0000;
+}
+
+input[type="submit"]:active {
+  cursor: hand;
+  font-family: 'Open Sans', sans-serif;
+  background: #4c0000;
+  border: 0px;
+}
+
+
+title {
+	color: white;
+}
+
+select {
+  font-size: 24px;
+  background: transparent;
+  color: white;
+  border: 0;
+}
+
+p {
+color: white;
+}
+
+p.Orders {
+  font-family: 'Poiret One'
+}
+
+
+
+_____________________________________________________________
+
